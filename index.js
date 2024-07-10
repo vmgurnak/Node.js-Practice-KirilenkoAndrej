@@ -3,6 +3,7 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 
 const targetPath = path.resolve('downloads');
+console.log(targetPath);
 
 const dirDict = {
   documents: [
