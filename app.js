@@ -6,7 +6,7 @@ import cors from 'cors';
 
 import productsRouter from './routes/api/productsRouter.js';
 
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 const DB_URI = process.env.DB_URI;
 
 const app = express();
@@ -28,7 +28,7 @@ mongoose
   .connect(DB_URI)
   .then(() => {
     console.log('DB connected');
-    app.listen(port, () => console.log(`Server started on port ${port}`));
+    app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
   })
   .catch((err) => {
     console.err('Database connection error', err);

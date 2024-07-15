@@ -1,4 +1,5 @@
 import { createError } from '../helpers/createError.js';
+import { isNotProduct } from '../helpers/isNotProduct.js';
 import product from '../models/product.js';
 import Product from '../models/product.js';
 
@@ -24,9 +25,8 @@ export const deleteProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
     const deleteProduct = await Product.findByIdAndDelete(id);
-    if (deleteProduct === null) {
-      throw createError(404, 'Product not found');
-    }
+
+    isNotProduct(deleteProduct);
 
     res.status(200).send(deleteProduct);
   } catch (error) {
@@ -40,9 +40,7 @@ export const updateProduct = async (req, res, next) => {
     const updateProduct = await Product.findByIdAndUpdate(id, req.body, {
       new: true,
     });
-    if (updateProduct === null) {
-      throw createError(404, 'Product not found');
-    }
+    isNotProduct(updateProduct);
     res.status(200).send(updateProduct);
   } catch (error) {
     next(error);
@@ -56,9 +54,9 @@ export const updateSaleProduct = async (req, res, next) => {
       new: true,
       projection: { sale: 1 },
     });
-    if (updateProduct === null) {
-      throw createError(404, 'Product not found');
-    }
+
+    isNotProduct(updateSaleProduct);
+
     res.status(200).send(updateSaleProduct);
   } catch (error) {
     next(error);

@@ -7,7 +7,7 @@ import {
   updateSaleProduct,
 } from '../../controllers/productController.js';
 import { isValidId } from '../../middlewares/isValidid.js';
-import { validateBody } from '../../helpers/validateBody.js';
+import { validateBody } from '../../middlewares/validateBody.js';
 import {
   addProductShema,
   saleProductShema,
