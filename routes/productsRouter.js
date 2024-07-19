@@ -5,15 +5,15 @@ import {
   deleteProduct,
   updateProduct,
   updateSaleProduct,
-} from '../../controllers/productController.js';
-import { isValidId } from '../../middlewares/isValidid.js';
-import { validateBody } from '../../middlewares/validateBody.js';
+} from '../controllers/productsControllers.js';
+import { isValidId } from '../middlewares/isValidid.js';
+import { validateBody } from '../middlewares/validateBody.js';
 import {
   addProductShema,
   saleProductShema,
   updateProductShema,
-} from '../../shemas/productsShemas.js';
-import { isEmptyBody } from '../../middlewares/isEmptyBody.js';
+} from '../shemas/productsShemas.js';
+import { isEmptyBody } from '../middlewares/isEmptyBody.js';
 
 const productsRouter = express.Router();
 
