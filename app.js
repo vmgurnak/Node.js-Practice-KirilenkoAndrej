@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import productsRouter from './routes/productsRouter.js';
-import userRouter from './routes/userRouter.js';
+import usersRouter from './routes/usersRouter.js';
 
 const PORT = process.env.PORT;
 const DB_URI = process.env.DB_URI;
@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/products', productsRouter);
-app.use('/api/users', userRouter);
+app.use('/api/users', usersRouter);
 
 app.use((_, res) => res.status(404).json({ message: 'Route not found' }));
 
@@ -35,5 +35,4 @@ mongoose
   .catch((err) => {
     console.err('Database connection error', err);
     process.exit(1);
-  })
-  .finally(() => mongoose.disconnect());
+  });

@@ -1,6 +1,5 @@
 import { createError } from '../helpers/createError.js';
 import { isNotProduct } from '../helpers/isNotProduct.js';
-import product from '../models/product.js';
 import Product from '../models/product.js';
 
 export const getProducts = async (req, res, next) => {
