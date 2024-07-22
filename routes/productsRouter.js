@@ -14,9 +14,11 @@ import {
   updateProductShema,
 } from '../shemas/productsShemas.js';
 import { isEmptyBody } from '../middlewares/isEmptyBody.js';
+import { auth } from '../middlewares/auth.js';
 
 const productsRouter = express.Router();
 
+productsRouter.use(auth);
 productsRouter.get('/', getProducts);
 productsRouter.post('/', validateBody(addProductShema), createProducts);
 productsRouter.delete('/:id', isValidId, deleteProduct);
