@@ -3,6 +3,7 @@ import { isNotProduct } from '../helpers/isNotProduct.js';
 import Product from '../models/product.js';
 
 export const getProducts = async (req, res, next) => {
+  console.log(req.user);
   try {
     const products = await Product.find();
     res.send(products);
@@ -57,6 +58,14 @@ export const updateSaleProduct = async (req, res, next) => {
     isNotProduct(updateSaleProduct);
 
     res.status(200).send(updateSaleProduct);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateImagesProduct = async (req, res, next) => {
+  try {
+    res.send(req.files);
   } catch (error) {
     next(error);
   }

@@ -5,6 +5,7 @@ import {
   deleteProduct,
   updateProduct,
   updateSaleProduct,
+  updateImagesProduct,
 } from '../controllers/productsControllers.js';
 import { isValidId } from '../middlewares/isValidid.js';
 import { validateBody } from '../middlewares/validateBody.js';
@@ -15,6 +16,8 @@ import {
 } from '../shemas/productsShemas.js';
 import { isEmptyBody } from '../middlewares/isEmptyBody.js';
 import { auth } from '../middlewares/auth.js';
+
+import uploadMiddleware from '../middlewares/uploadFiles.js';
 
 const productsRouter = express.Router();
 
@@ -34,6 +37,12 @@ productsRouter.patch(
   isValidId,
   validateBody(saleProductShema),
   updateSaleProduct
+);
+productsRouter.patch(
+  '/images/:id',
+  isValidId,
+  uploadMiddleware.array('productImages', 8),
+  updateImagesProduct
 );
 
 export default productsRouter;
